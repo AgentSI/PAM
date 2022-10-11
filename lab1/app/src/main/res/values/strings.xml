@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">lab 1</string>
+    <string name="button_notify">Push notification</string>
+    <string name="button_google">Google</string>
+    <string name="input">Input</string>
+    <string name="button_camera">Camera</string>
+    <string name="button_call">Call</string>
+    <string name="radio_button_emergency">Emergency call</string>
+    <string name="radio_button_taxi">Call Taxi</string>
+</resources>
