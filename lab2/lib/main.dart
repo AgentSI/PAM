@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:footer/footer.dart';
+import 'package:footer/footer_view.dart';
 
 void main() => runApp(const MyApp());
 
@@ -8,12 +10,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Lab2',
+      title: 'Lab 2',
       theme: ThemeData(
-        // This is the theme of your application
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.brown,
       ),
-      home: const MyHomePage(title: 'Lab2'),
+      home: const MyHomePage(title: 'Lab 2'),
+      debugShowCheckedModeBanner: false
     );
   }
 }
@@ -36,7 +38,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final myController = TextEditingController();
-
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -60,53 +61,57 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called for instance
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(40.0),
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          children: <Widget>[
-            const Text(
-              'Count the number of words containing the letter "A" or "a"',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22, color: Colors.deepPurple),
-            ),
-            Container(
-              margin: const EdgeInsets.all(22),
-              child: TextField(
-                controller: myController,
-                decoration: const InputDecoration(
-                  hintText: 'Input text here',
-                  hintStyle: TextStyle(color: Colors.deepPurple)
-                ),
-                style: const TextStyle(fontSize: 20, color: Colors.deepPurple),
-              ),
-            ),
-          ],
+        backgroundColor: const Color.fromRGBO(250, 212, 188, 1),
+        appBar: AppBar(
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text(widget.title)
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                // Retrieve the text the that user has entered by using the
-                // TextEditingController.
-                content: Text(count(myController.text)),
-                contentTextStyle: const TextStyle(color: Colors.deepPurple),
-              );
-            },
-          );
-        },
-        child: const Icon(Icons.search_sharp),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        body: FooterView(
+            footer: Footer(
+                backgroundColor: const Color.fromRGBO(250, 212, 188, 1),
+                child: const Text('© Develop by Ivanova Evghenia',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 10, color: Color.fromRGBO(53, 36, 7, 1))
+                )
+            ),
+            children: <Widget>[
+              const Padding(
+                  padding: EdgeInsets.only(top: 20, left: 10, right: 10),
+                  child: Text('Count the number of words containing the letter "A" or "a"',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22, color: Color.fromRGBO(53, 36, 7, 1))
+                  )
+              ),
+              Padding(
+                  padding: const EdgeInsets.only(top: 15, left: 50, right: 50),
+                  child: TextField(
+                      controller: myController,
+                      decoration: const InputDecoration(
+                          hintText: 'Input text here',
+                          hintStyle: TextStyle(color: Color.fromRGBO(53, 36, 7, 1))
+                      ),
+                      style: const TextStyle(fontSize: 20, color: Color.fromRGBO(53, 36, 7, 1))
+                  )
+              ),
+              Image.asset('assets/img.png')
+            ]
+        ),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      // Retrieve the text the that user has entered by using the TextEditingController.
+                      content: Text(count(myController.text)),
+                        contentTextStyle: const TextStyle(color: Color.fromRGBO(53, 36, 7, 1))
+                    );
+                  }
+                  );
+              },
+            child: const Icon(Icons.search_sharp)
+        )
     );
   }
 }
